@@ -34,16 +34,16 @@ valid replay result, not a CLI error.
 
 ## What's built, and what's next
 
-This is the **deterministic baseline**. Replay recomputes a diagnosis from
-the snapshot; it does not play back a prerecorded LLM answer. There is no
-agent or live data collector yet.
+Replay recomputes the **deterministic baseline**. The optional
+[HolmesGPT experiment](docs/experiment.md) uses a [reusable investigation
+skill](skills/kafka-scaling/SKILL.md) and six read-only snapshot tools. There
+is no live cluster collector.
 
 [Kedify](https://github.com/kedify/kubectl-kedify/blob/main/debug.sh) can show
 the scaler metric, and [HolmesGPT](https://holmesgpt.dev/latest/reference/skills/)
-already supports troubleshooting skills and evaluations. The next milestone
-is a reusable Kafka/KEDA skill: run it against the same cases and compare its
-diagnoses, citations, justified `unknown` results, and evidence reads with
-this runbook. No comparative results yet.
+already supports troubleshooting skills and evaluations. `python -m
+experiment.compare` runs the five-case baseline. Add `--model` for a paired
+run. No live model results are claimed yet.
 
 See [the design](docs/design.md) for the snapshot contract, diagnosis rules,
 and how to extend the evaluation.

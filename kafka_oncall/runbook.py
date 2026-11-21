@@ -7,12 +7,12 @@ from datetime import datetime, timedelta
 from enum import StrEnum
 from typing import Any, Literal, TypeVar
 
+from kafka_oncall.window import MAX_SAMPLE_AGE
 from kafka_oncall.snapshot import (
     Deployment, Hpa, Observation, Pod, ScaledObject, Snapshot, Source, utc_string,
 )
 
 REPORT_FORMAT = "kafka-oncall/report-v1"
-MAX_SAMPLE_AGE = timedelta(seconds=30)
 CAP_PROFILE = "keda-2.20.0-kafka"
 _T = TypeVar("_T", bound=Observation)
 _CPU_ONLY = re.compile(r"0/([1-9][0-9]*) nodes are available: \1 Insufficient cpu\.?")

@@ -88,12 +88,13 @@ many reads the runbook attempted. It does not judge prose or call an LLM.
 Exit codes: `0` means replay completed or the suite passed, `1` means a suite
 expectation failed, and `2` means the CLI or the input was invalid.
 
-## Next experiment
+## Agent experiment
 
 Keep the snapshot data and scoring rules fixed. Give a skill-backed agent the
 question, target, and the same observations via typed, read-only tools. The
 agent chooses the next read; code handles identity checks and arithmetic.
 Do not pass scenario IDs, filenames, or expected answers to the model. Add
 unseen cases with contradictory or missing data and compare against the
-runbook and HolmesGPT before adding live adapters. Record an example agent
-trace for the offline interview demo; don't present it as a fresh model run.
+runbook before adding live adapters. The [experiment guide](experiment.md)
+describes the HolmesGPT adapter, the two additional cases and how to record
+a real model trace.
