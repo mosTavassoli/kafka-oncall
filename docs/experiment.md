@@ -84,8 +84,10 @@ blocker for the missing metric, stale metric, and mismatched consumer
 group. The runbook made **23 reads**; the agent made **24**, excluding the
 skill fetch. The extra read was the KEDA metric on the wrong-group case.
 
-The [90-second agent replay](agent-nano.cast) shows the first three cases
-from that live run. Play it with `asciinema play docs/agent-nano.cast`.
+The [90-second browser demo](https://mostavassoli.github.io/kafka-oncall/demo.html)
+shows the first three cases from that live run. For local playback, run
+`asciinema play docs/agent-nano.cast`, or serve the page with
+`python -m http.server --directory docs` and open `http://localhost:8000/demo.html`.
 The timing is edited for readability, not measured latency. This run
 demonstrates tool use and evidence-based abstention; it does not show an
 accuracy or efficiency improvement over the runbook.

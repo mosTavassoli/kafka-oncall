@@ -7,6 +7,10 @@ Kafka On-Call is a small, read-only investigation lab for that question. It
 lines up Kafka lag, KEDA's external metric, the Horizontal Pod Autoscaler's
 (HPA's) desired replica count, and the workload's ready pods.
 
+**[Watch the 90-second browser demo](https://mostavassoli.github.io/kafka-oncall/demo.html)** ·
+[Evaluation results](docs/experiment.md#measured-result) ·
+[Investigation skill](skills/kafka-scaling/SKILL.md)
+
 ## Try it
 
 From the repo root, with Python 3.11 or newer:

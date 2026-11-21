@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kafka On-Call · Investigation demo</title>
+<style>
+  :root { color-scheme: dark; font: 100%/1.55 system-ui, sans-serif; background: #10151d; color: #e6edf6; }
+  body { margin: auto; max-width: 54rem; padding: clamp(1rem, 4vw, 3rem); }
+  a { color: #a8ceff; }
+  h1 { font-size: clamp(2rem, 6vw, 3.25rem); line-height: 1.1; margin: .25em 0; }
+  p { max-width: 67ch; }
+  .label { color: #a7dfce; font: 700 .8rem/1.4 system-ui; letter-spacing: .1em; text-transform: uppercase; }
+  .panel { padding: clamp(.75rem, 3vw, 1.5rem); border: 1px solid #506073; border-radius: .8rem; background: #171f2a; }
+  .controls { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+  button { border: 1px solid #728096; border-radius: .4rem; color: inherit; background: #212c3a; font: inherit; padding: .4rem .75rem; cursor: pointer; }
+  button:hover, button[aria-pressed="true"] { background: #32445a; }
+  button:disabled { opacity: .55; cursor: default; }
+  :focus-visible { outline: 3px solid #a8ceff; outline-offset: 3px; }
+  progress { width: 100%; accent-color: #a7dfce; }
+  pre { white-space: pre-wrap; overflow-wrap: anywhere; margin-bottom: 0; font: .88rem/1.55 ui-monospace, monospace; }
+</style>
+<body>
+<header>
+  <p class="label">Kafka · Kubernetes · Agent evaluation</p>
+  <h1>Kafka On-Call</h1>
+  <p>Kafka lag is high. Why are only four pods ready? Watch a read-only agent
+    work through the same question with three different sets of evidence.</p>
+</header>
+<main>
+  <section class="panel" aria-label="Recorded investigation">
+    <div class="controls" aria-label="Playback">
+      <button id="play" type="button" disabled>Play</button>
+      <button id="restart" type="button" disabled>Restart</button>
+      <span id="time">0:00 / 1:30</span>
+    </div>
+    <progress id="progress" max="90" value="0" aria-label="Playback progress"></progress>
+    <div class="controls" aria-label="Jump to a case">
+      <button type="button" data-start="0" disabled>Partition cap</button>
+      <button type="button" data-start="30" disabled>CPU scheduling</button>
+      <button type="button" data-start="60" disabled>Missing evidence</button>
+    </div>
+    <pre id="trace" tabindex="0" aria-label="Investigation trace">Loading recording…</pre>
+    <noscript><p>Enable JavaScript to play the recording, or use the transcript below.</p></noscript>
+  </section>
+  <p>This is a replay of a model run on synthetic snapshots. The timing is edited
+    for readability; it is not measured latency. No API key or live cluster is used
+    during playback.</p>
+  <details open>
+    <summary>Demo transcript</summary>
+    <ol>
+      <li><strong>Partition cap:</strong> Kafka has four partitions and 800 messages of lag;
+        KEDA exposed 400 at a target of 100. The HPA requested four replicas and all four are ready.</li>
+      <li><strong>CPU scheduling:</strong> The HPA requested eight replicas. Four are ready and four
+        are pending; the scheduler reported insufficient CPU.</li>
+      <li><strong>Missing evidence:</strong> Four replicas are requested and ready, but the KEDA
+        metric is missing. The agent reports <code>unknown</code> rather than inferring a cap.</li>
+    </ol>
+  </details>
+  <p><strong>Evaluation:</strong> The agent and deterministic runbook both passed all five
+    synthetic cases. The agent took 24 evidence reads; the runbook took 23.
+    <a href="https://github.com/mosTavassoli/kafka-oncall/blob/main/docs/experiment.md#measured-result">Read the results</a>
+    · <a href="https://github.com/mosTavassoli/kafka-oncall">View the source</a></p>
+</main>
+<script src="demo.js" defer></script>
+</body>
+</html>
