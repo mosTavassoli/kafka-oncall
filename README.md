@@ -43,7 +43,8 @@ is no live cluster collector.
 the scaler metric, and [HolmesGPT](https://holmesgpt.dev/latest/reference/skills/)
 already supports troubleshooting skills and evaluations. `python -m
 experiment.compare` runs the five-case baseline. Add `--model` for a paired
-run. No live model results are claimed yet.
+run. In one live run, GPT-5.4 nano and the runbook both passed all five
+synthetic cases. See the [results and agent replay](docs/experiment.md#measured-result).
 
 See [the design](docs/design.md) for the snapshot contract, diagnosis rules,
 and how to extend the evaluation.
