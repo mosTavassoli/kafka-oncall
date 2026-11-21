@@ -1,0 +1,45 @@
+{
+  "format": "kafka-oncall/suite-v1",
+  "cases": [
+    {
+      "snapshot": "partition-cap.json",
+      "expected": {
+        "cause": "partition_cap",
+        "required_evidence": [
+          "/observations/scaled_object",
+          "/observations/hpa",
+          "/observations/deployment",
+          "/observations/kafka",
+          "/observations/external_metric"
+        ],
+        "blocked_on": null
+      }
+    },
+    {
+      "snapshot": "cpu-scheduling.json",
+      "expected": {
+        "cause": "cpu_scheduling",
+        "required_evidence": [
+          "/observations/scaled_object",
+          "/observations/hpa",
+          "/observations/deployment",
+          "/observations/pods"
+        ],
+        "blocked_on": null
+      }
+    },
+    {
+      "snapshot": "missing-metric.json",
+      "expected": {
+        "cause": "unknown",
+        "required_evidence": [
+          "/observations/scaled_object",
+          "/observations/hpa",
+          "/observations/deployment",
+          "/observations/kafka"
+        ],
+        "blocked_on": "/observations/external_metric"
+      }
+    }
+  ]
+}

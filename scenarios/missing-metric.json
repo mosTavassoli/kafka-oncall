@@ -1,0 +1,57 @@
+{
+  "format": "kafka-oncall/snapshot-v1",
+  "id": "missing-metric",
+  "target": "demo/orders-worker",
+  "as_of": "2026-11-21T10:00:10Z",
+  "observations": {
+    "scaled_object": {
+      "observed_at": "2026-11-21T10:00:03Z",
+      "target": "demo/orders-worker",
+      "name": "orders",
+      "hpa": "keda-hpa-orders",
+      "metric": "s0-kafka-orders",
+      "kafka_cluster": "demo-kafka",
+      "topic": "orders",
+      "consumer_group": "orders-workers",
+      "lag_threshold": 100,
+      "scaler_profile": "keda-2.20.0-kafka",
+      "plain_lag_mode": true,
+      "allow_idle_consumers": false
+    },
+    "hpa": {
+      "observed_at": "2026-11-21T10:00:08Z",
+      "target": "demo/orders-worker",
+      "name": "keda-hpa-orders",
+      "metric": "s0-kafka-orders",
+      "target_average_value": 100,
+      "min_replicas": 1,
+      "max_replicas": 12,
+      "desired_replicas": 4,
+      "scaling_limited": false
+    },
+    "deployment": {
+      "observed_at": "2026-11-21T10:00:09Z",
+      "target": "demo/orders-worker",
+      "desired_replicas": 4,
+      "ready_replicas": 4
+    },
+    "kafka": {
+      "observed_at": "2026-11-21T10:00:05Z",
+      "kafka_cluster": "demo-kafka",
+      "topic": "orders",
+      "consumer_group": "orders-workers",
+      "partitions": 4,
+      "lag": 800
+    },
+    "pods": {
+      "observed_at": "2026-11-21T10:00:09Z",
+      "target": "demo/orders-worker",
+      "items": [
+        {"name": "orders-worker-6cd456bd9-2qkzg", "phase": "Running", "ready": true, "scheduled": true, "reason": null, "message": null},
+        {"name": "orders-worker-6cd456bd9-4fk7t", "phase": "Running", "ready": true, "scheduled": true, "reason": null, "message": null},
+        {"name": "orders-worker-6cd456bd9-g8r8b", "phase": "Running", "ready": true, "scheduled": true, "reason": null, "message": null},
+        {"name": "orders-worker-6cd456bd9-pmx6m", "phase": "Running", "ready": true, "scheduled": true, "reason": null, "message": null}
+      ]
+    }
+  }
+}
