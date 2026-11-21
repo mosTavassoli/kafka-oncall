@@ -53,6 +53,10 @@ synthetic cases. See the [results and agent replay](docs/experiment.md#measured-
 See [the design](docs/design.md) for the snapshot contract, diagnosis rules,
 and how to extend the evaluation.
 
+**Next milestone:** [capture and replay one incident from a running local
+Kafka/KEDA cluster](docs/roadmap.md). Kafka On-Call stays independent; Failure
+Lab can use its investigation skill and reports without replacing this repo.
+
 ## Tests
 
 ```sh
